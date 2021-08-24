@@ -45,3 +45,37 @@ nums is sorted in non-decreasing order.
     return result;
 };
 ```
+
+### O(nlogn) method
+```js
+var sortedSquares = function(nums) {
+    for(let i = 0 ;i<nums.length;i++){
+        nums[i] = Math.pow(nums[i],2);
+    }
+    nums.sort((a,b)=> a-b);
+    return nums;
+};
+```
+
+### most efficient (two pointer approach)
+```js
+var sortedSquares = function(nums) {
+    let result = [];
+    let left = 0;
+    let right = nums.length -1;
+    while(left<=right){
+        let num1 = Math.pow(nums[left],2);
+        let num2 = Math.pow(nums[right],2);
+        if(num1 > num2){
+            result.push(num1);
+            left++;
+        }
+        else{
+            result.push(num2);
+            right--;
+        }
+    }
+    
+    return result.reverse();
+};
+```
